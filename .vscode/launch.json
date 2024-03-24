@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Cis530Application",
+            "request": "launch",
+            "mainClass": "com.bookstore.Cis530Application",
+            "projectName": "cis530"
+        },
+        {
+            "type": "java",
+            "name": "HomeController",
+            "request": "launch",
+            "mainClass": "com.bookstore.web.HomeController",
+            "projectName": "cis530"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Cis530Application<cis530>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.bookstore.cis530.Cis530Application",
+            "projectName": "cis530",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
