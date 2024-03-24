@@ -1,9 +1,15 @@
+<!--
+    Eitzen, N. (2024). CIS 530 Server Side Development. Bellevue University
+    Gold, P. (2021). Bellevue University 
+    Credited Professor Gold due to following along his classroom instructions
+-->
+
 <!DOCTYPE html>
 <head></head>
 <body>
     <header th:fragment="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+            <div class="container"> <!-- Changed it from professors because this aligns with the body text and footer. -->
                 <a class="navbar-brand" href="/">Bookclub</a>
                 <button class="navbar-toggler" type="button"
                         data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -15,12 +21,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/cis530/src/main/resources/templates/about.html" 
-                            th:href="@{/about}">About us</a>
+                            <a class="nav-link" href="/cis530/src/main/resources/templates/about.html" th:href="@{/about}">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/cis530/src/main/resources/templates/contact.html"
-                                th:href="@{/contact}">Contact Us</a>
+                            <a class="nav-link" href="/cis530/src/main/resources/templates/contact.html" th:href="@{/contact}">Contact Us</a>
                         </li>
                     </ul>
                 </div>

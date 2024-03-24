@@ -1,3 +1,7 @@
+<!--
+    Eitzen, N. (2024). CIS 530 Server Side Development. Bellevue University
+-->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
@@ -17,8 +21,54 @@
     </head>
     <body>
         <div th:insert="~{fragments/header :: header}"></div>
-
+        
+        <div class="container py-5" style="width: 50%;">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1>About us.</h1>
+                </div>
+            </div>
     
+            <br /><br />
+    
+            <div class="row">
+                <div class="col-6">
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <h1>Nolan Eitzen</h1>
+                        </div>
+                    </div>
+    
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0">Student - Ms CIS Bellevue University</li>
+                                <li class="list-group-item border-0">Occupation - Fiserv, Global Security and Investigations</li>
+                                <li class="list-group-item border-0">Contact - neitzen@my365bellevue.edu</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-6">
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <h1>Patrick Gold</h1>
+                        </div>
+                    </div>
+    
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0">Professor - Bellevue University</li>
+                                <li class="list-group-item border-0">Instructing - CIS 530, Spring 2024</li>
+                                <li class="list-group-item border-0">Contact - pagold@bellevue.edu</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div th:insert="~{/fragments/footer :: footer}"></div>
         <div th:insert="~{/fragments/scriptFooter :: scriptFooter}"></div>

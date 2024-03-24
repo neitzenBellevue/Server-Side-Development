@@ -1,3 +1,7 @@
+/*
+ * Eitzen, N. (2024). CIS 530 Server Side Development. Bellevue University
+ */ 
+
 package com.bookstore;
 
 import org.springframework.boot.SpringApplication;
@@ -9,5 +13,4 @@ public class Cis530Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Cis530Application.class, args);
 	}
-
 }
