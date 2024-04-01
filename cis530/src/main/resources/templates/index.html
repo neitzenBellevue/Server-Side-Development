@@ -33,6 +33,18 @@
                         book to see its details.
                     </p>
                 </div>
+                <div class="col" th:each="book : ${books}">
+                    <ul>
+                        <p class="card-text">
+                            <span th:text="${book.getTitle()}"></span>
+                            <br/>
+                            <small class="text-muted"><em th:text="${book.getDescription()}"></em></small>
+                            <div class="btn-group">
+                                <a href="#" th:href="@{/{id}(id=${book.getISBN()})}" class="btn btn-sm btn-outline=secondary">View Above Book</a>
+                            </div>
+                        </p>
+                    </ul>
+                </div>
             </section>
         </main>
         <div th:insert="~{/fragments/footer :: footer}"></div>
