@@ -21,6 +21,27 @@
     <body>
         <div th:insert="~{fragments/header :: header}"></div>
 
+        <div class="py-5 container" style="width: 50%;">
+            <h1 class="text-center">New Wishlist Item Form</h2>
+            <form action="#" th:action="@{/wishlist}" th:object="${wishlistItem}" method="post">
+    
+                <div class="mb-3">
+                    <label for="ISBN" class="form-label">ISBN</label>
+                    <input type="text" class="form-control" id="ISBN" name="ISBN" th:field="*{ISBN}" />
+                    <small th:if="${#fields.hasErrors('ISBN')}" style="color: red;" th:errors="*{ISBN}"></small>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" th:field="*{title}" />
+                    <small th:if="${#fields.hasErrors('title')}" style="color: red;" th:errors="*{title}"></small>
+                </div>
+    
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>   
+            <a href="/wishlist" th:href="@{/wishlist}">Return to wishlist</a>
+        </div>
+
         <div th:insert="~{/fragments/footer :: footer}"></div>
         <div th:insert="~{/fragments/scriptFooter :: scriptFooter}"></div>
     </body>
