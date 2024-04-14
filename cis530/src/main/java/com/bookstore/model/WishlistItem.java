@@ -1,10 +1,11 @@
 /*
  * Eitzen, N. (2024). CIS 530 Server Side Development. Bellevue University
- * Assignment 4 - Forms and Data Validation
+ * Assignment 5 - MongoDB
  */
 
 package com.bookstore.model;
 
+import org.springframework.data.annotation.Id;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -16,6 +17,9 @@ public class WishlistItem {
     @NotNull
     @NotEmpty(message = "Title is a required filed")
     private String title;
+
+    @Id
+    private String id;
 
     public WishlistItem(){
         this.ISBN = "0";
@@ -30,7 +34,8 @@ public class WishlistItem {
     @Override
     public String toString(){
         StringBuilder build = new StringBuilder();
-        build.append("isbn=" + this.ISBN);
+        build.append("id=" + this.id);
+        build.append(", isbn=" + this.ISBN);
         build.append(", title=" + this.title);
         return build.toString();
     }
@@ -49,5 +54,9 @@ public class WishlistItem {
 
     public void setISBN(String iSBN) {
         ISBN = iSBN;
+    }
+
+    public String getId() {
+        return id;
     }
 }
