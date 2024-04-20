@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.bookstore.model.WishlistItem;
 import com.bookstore.service.dao.WishlistDao;
 import com.bookstore.service.impl.MongoWishlistDao;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/wishlist")

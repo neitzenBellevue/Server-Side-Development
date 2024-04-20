@@ -4,6 +4,13 @@
             "type": "java",
             "name": "Cis530Application",
             "request": "launch",
+            "mainClass": "Cis530Application",
+            "projectName": "cis530"
+        },
+        {
+            "type": "java",
+            "name": "Cis530Application",
+            "request": "launch",
             "mainClass": "com.bookstore.Cis530Application",
             "projectName": "cis530"
         },

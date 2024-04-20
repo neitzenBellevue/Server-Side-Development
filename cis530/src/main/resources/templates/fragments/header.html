@@ -1,7 +1,6 @@
 <!--
     Eitzen, N. (2024). CIS 530 Server Side Development. Bellevue University
-    Gold, P. (2021). Bellevue University 
-    Credited Professor Gold due to following along his classroom instructions
+    Assignment 6 - Spring Security
 -->
 
 <!DOCTYPE html>
@@ -28,6 +27,18 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/cis530/src/main/resources/templates/wishlist/list.html" th:href="@{/wishlist}">Wishlist</a>
+                        </li>
+                        
+                    </ul>
+                    <div class="nav navbar-nav ml-auto w-100 justify-content-center">
+                        <div sec:authorize="isAuthenticated()">
+                            Logged in as <strong sec:authentication="name"></strong>
+                        </div>
+                    </div>
+
+                    <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+                        <li class="nav-item float-end">
+                            <a class="nav-link" href="/logout" th:href="@{/logout}">Logout</a>
                         </li>
                     </ul>
                 </div>
