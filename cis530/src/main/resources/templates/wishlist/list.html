@@ -1,57 +1,70 @@
-<!--
-    Eitzen, N. (2024). CIS 530 Server Side Development. Bellevue University
--->
+<!-- Copied from GitHub as I could not complete Week 7 due to a tornado. -->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Bookclub | Wishlist</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Bookclub | Wishlist</title>
 
-        <!--  Bootstrap StyleSheet CDN -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous">
+    <!--  Bootstrap StyleSheet CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+<body>
+    <div th:insert="~{fragments/header :: header}"></div>
 
-        <link rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-            integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-            crossorigin="anonymous">    
-    </head>
-    <body>
-        <div th:insert="~{fragments/header :: header}"></div>
+    <div class="py-5 container" style="width: 50%;">
+        <h2 class="text-center">My Wishlist</h2>
 
-        <div class="container py-5" style="width: 50%;">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h1>My wishlist</h1>
-                </div>
-            </div>
-            <p class="row text-center">
-                <a href="/cis530/src/main/resources/templates/wishlist/new.html" th:href="@{/wishlist/new}"> New Wishlist Item </a>
-            </p>
-            <table class="table"> <!-- Borrowed table idea from CIS 530 github. Originally was done the same as index.html, but didn't look like you described -->
-                <thead>
-                    <tr>
-                        <th scope="col">ISBN</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Functions</th>
-                    </tr>
-                </thead>
-                <tbody th:each="item : ${wishlist}">
-                    <tr>
-                        <td th:text="${item.getISBN()}"></td>
-                        <td th:text="${item.getTitle()}"></td>
-                        <td>
-                            <a href="#" class="link">Edit</a> |
-                            <a href="#" class="link">Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <br />
 
-        <div th:insert="~{/fragments/footer :: footer}"></div>
-        <div th:insert="~{/fragments/scriptFooter :: scriptFooter}"></div>
-    </body>
+        <p class="text-center">
+            <a href="/wishlist/new" th:href="@{/wishlist/new}" class="btn btn-outline-secondary text-center">New Wishlist Item</a>
+        </p>
+
+        <div id="wishlist"></div>
+    </div>
+
+    <div th:insert="~{fragments/scriptFooter :: scriptFooter}"></div>
+
+    <script type="text/javascript">
+        class HttpClient {
+            async get(url, params = "") {
+                url = new URL(url);
+                url.search = new URLSearchParams(params).toString();
+
+                console.log(url.toString());
+
+                const res = await fetch(url.toString(), {
+                    method: 'GET',
+                });
+
+                return res.json();
+            }
+        }
+
+        function buildTable (books) {
+            let tableString = `<table class="table"><tr><th>ISBN</th><th>Title</th><th>Functions</th></tr>`;
+
+            for (let book of books) {
+                tableString += `<tr><td>${book.isbn}</td><td>${book.title}</td><td><a href="#">Edit</a> | <a href="#">Delete</a></td></tr>`;
+            }
+
+            tableString += `</table>`
+
+            return tableString;
+        }
+
+        const http = new HttpClient();
+
+        http.get('http://localhost:8080/api/wishlist').then(res => {
+            console.log(res);
+            document.getElementById("wishlist").innerHTML = buildTable(res);
+        }).catch(e => {
+            console.log(e);
+        })
+    </script>
+</body>
 </html>
