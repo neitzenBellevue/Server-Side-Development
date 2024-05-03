@@ -28,23 +28,19 @@
                     <br>
                     <Strong>Title:</Strong>
                     <ul style="list-style-type:none;">
-                           <li th:text="${book.getTitle}"></li>
+                           <li th:text="${book.getTitle()}"></li>
                     </ul>
                     <Strong>Description:</Strong>
                     <ul style="list-style-type:none;">
-                        <li th:text="${book.getDescription}"></li>
-                    </ul>
-                    <Strong>ISBN:</Strong>
-                    <ul style="list-style-type:none;">
-                        <li th:text="${book.getISBN}"></li>
+                        <li th:text="${book.getDescription()}"></li>
                     </ul>
                     <strong>Page Count:</strong>
                     <ul style="list-style-type:none">
-                        <li th:text="${book.getNumOfPages}"></li>
+                        <li th:text="${book.getNumOfPages()}"></li>
                     </ul>
-                    <Strong>Authors:</Strong>
+                    <Strong>Web Link:</Strong>
                     <ul style="list-style-type:none">
-                        <li th:each="author : ${book.getAuthors}" th:text="${author}"></li>
+                        <li><a href="#" th:href="${book.getInfoUrl()}" th:text ="${book.getInfoUrl()}"></a></li>
                     </ul>
                     <ul style="list-style-type:none;">
                         <li><a href="/" th:href="@{/}">Return to Books</a></li>

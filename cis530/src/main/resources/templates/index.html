@@ -38,9 +38,12 @@
                         <p class="card-text">
                             <span th:text="${book.getTitle()}"></span>
                             <br/>
-                            <small class="text-muted"><em th:text="${book.getDescription()}"></em></small>
+                            <small class="text-muted">
+                                <em th:text="${book.getISBN()}"></em>
+                            </small>
                             <div class="btn-group">
-                                <a href="#" th:href="@{/{id}(id=${book.getISBN()})}" class="btn btn-sm btn-outline=secondary">View Above Book</a>
+                                <a href="#" th:href="@{/{id}(id=${book.getISBN()})}" class="btn btn-sm btn-outline-secondary">View Above Book</a>
+                                <a href="#" th:href="${book.getInfoUrl()}" class="btn btn-sm btn-outline-secondary" target="_blank">Web Link</a>
                             </div>
                         </p>
                     </ul>

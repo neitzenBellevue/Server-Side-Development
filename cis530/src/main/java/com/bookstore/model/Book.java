@@ -1,6 +1,6 @@
 /*
  * Eitzen, N. (2024). CIS 530 Server Side Development. Bellevue University
- * Assignment 4 - Forms and Data Validation
+ * Assignment 8 - OpenAPI/Swagger
  */
 
 package com.bookstore.model;
@@ -13,24 +13,21 @@ public class Book {
     private String title;
     private String description;
     private int numOfPages;
-    private List<String> authors;
+    //private List<String> authors;
+    private String infoUrl;
 
-    
-
-    public Book(String ISBN, String title, String description, int numOfPages, List<String> authors){
+    public Book(String ISBN, String title, String description, int numOfPages, String infoUrl){
         this.ISBN = ISBN;
         this.title = title;
         this.description = description;
         this.numOfPages = numOfPages;
-        this.authors = authors;
+        this.infoUrl = infoUrl;
     }
 
-    public Book(){
-        this.ISBN = "0";
-        this.title = "placeholder title";
-        this.description = "placeholder description";
-        this.numOfPages = 0;
-        this.authors = new ArrayList<String>();
+    public Book(String isbn, String title, String infoUrl){
+        this.ISBN = isbn;
+        this.title = title;
+        this.infoUrl = infoUrl;
     }
 
     @Override
@@ -40,7 +37,7 @@ public class Book {
         returnString.append("title=" + title + ", ");
         returnString.append("description=" + description + ", ");
         returnString.append("numOfPages=" + numOfPages + ", ");
-        returnString.append("authors=" + authors.toString() + "}"); // Need to verify list toString behavior.
+        returnString.append("infoUrl=" + infoUrl + "}"); // Need to verify list toString behavior.
         return returnString.toString();
     }
 
@@ -60,13 +57,13 @@ public class Book {
         this.numOfPages = numOfPages;
     }
 
-    public List<String> getAuthors() {
-        return authors;
-    }
+    //public List<String> getAuthors() {
+    //    return authors;
+    //}
 
-    public void setAuthors(List<String> authors) {
-        this.authors = authors;
-    }
+    //public void setAuthors(List<String> authors) {
+    //    this.authors = authors;
+    //}
 
     public String getDescription() {
         return description;
@@ -82,5 +79,14 @@ public class Book {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    
+    public String getInfoUrl() {
+        return infoUrl;
+    }
+
+    public void setInfoUrl(String infoUrl) {
+        this.infoUrl = infoUrl;
     }
 }

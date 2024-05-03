@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.bookstore.model.Book;
-import com.bookstore.service.impl.MemBookDao;
+import com.bookstore.service.impl.RestBookDao;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
     @RequestMapping(method=RequestMethod.GET)
     public String showHome(Model model) {
-        MemBookDao bookDao = new MemBookDao();
+        RestBookDao bookDao = new RestBookDao();
         List<Book> books = bookDao.list();
 
         for (Book book : books){
@@ -52,18 +52,12 @@ public class HomeController {
     
     @RequestMapping(method=RequestMethod.GET, value = "/{id}")
     public String getMonthlyBook(@PathVariable("id") String id, Model model){
-        String isbn = id;
-        System.out.println(id);
-        
-        MemBookDao bookDao = new MemBookDao();
-        Book book = bookDao.find(isbn);
+        RestBookDao bookDao = new RestBookDao();
 
-        System.out.println(book.toString());
-        for(String author : book.getAuthors()){
-            System.out.println(author);
-        }
+        Book book = bookDao.find(id);
 
         model.addAttribute("book", book);
+
         return "monthly-books/view";
     }
 }
