@@ -5,9 +5,6 @@
 
 package com.bookstore.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Book {
     private String ISBN;
     private String title;

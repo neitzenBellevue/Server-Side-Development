@@ -1,6 +1,6 @@
 /*
  * Eitzen, N. (2024). CIS 530 Server Side Development. Bellevue University
- * Assignment 5 - MongoDB
+ * Assignment 9 - Crud Operations
  */
 
 package com.bookstore.service.impl;
@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import com.bookstore.model.WishlistItem;
 import com.bookstore.service.dao.WishlistDao;
@@ -19,8 +21,11 @@ public class MongoWishlistDao implements WishlistDao {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<WishlistItem> list(){
-        return (List<WishlistItem>) mongoTemplate.findAll(WishlistItem.class);
+    public List<WishlistItem> list(String username){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("username").is(username));
+
+        return mongoTemplate.find(query, WishlistItem.class);
     }
 
     @Override
@@ -30,21 +35,25 @@ public class MongoWishlistDao implements WishlistDao {
 
     @Override
     public void update(WishlistItem entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        WishlistItem wishlistItem = mongoTemplate.findById(entity.getId(), WishlistItem.class);
+        if (wishlistItem != null) {
+            wishlistItem.setISBN(entity.getISBN());
+            wishlistItem.setTitle(entity.getTitle());
+            wishlistItem.setUsername(entity.getUsername());
+            mongoTemplate.save(wishlistItem);
+        }
     }
 
     @Override
-    public boolean remove(WishlistItem entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+    public boolean remove(String key) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(key));
+        mongoTemplate.remove(query, WishlistItem.class);
+        return true;
     }
 
     @Override
     public WishlistItem find(String key) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'find'");
+        return mongoTemplate.findById(key, WishlistItem.class);
     }
-
-
 }
