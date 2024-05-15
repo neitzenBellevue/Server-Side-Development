@@ -5,10 +5,9 @@
 
 package com.bookstore.service.dao;
 
-import com.bookstore.model.WishlistItem;
+import com.bookstore.model.BookOfTheMonth;
 import com.bookstore.service.GenericCrudDao;
 
-public interface WishlistDao extends GenericCrudDao<WishlistItem, String> {
-
-   
+public interface BookOfTheMonthDao extends GenericCrudDao<BookOfTheMonth, String> {
+    
 }
