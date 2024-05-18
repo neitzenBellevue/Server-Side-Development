@@ -28,6 +28,11 @@ public class AdminController {
     
     private BookOfTheMonthDao bookOfTheMonthDao = new MongoBookOfTheMonthDao();
 
+    @Autowired
+    public void setBookOfTheMonthDao(BookOfTheMonthDao bookOfTheMonthDao) {
+        this.bookOfTheMonthDao = bookOfTheMonthDao;
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public String showBookOfTheMonth(Model model) {
         model.addAttribute("books", bookOfTheMonthDao.list("999"));

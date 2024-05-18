@@ -38,6 +38,7 @@ public class HomeController {
 
     @RequestMapping(method=RequestMethod.GET)
     public String showHome(Model model) {
+
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -47,12 +48,16 @@ public class HomeController {
         List<BookOfTheMonth> monthlyBooks = bookOfTheMonthDao.list(Integer.toString(calMonth));
 
         StringBuilder isbnBuilder = new StringBuilder();
-        for(BookOfTheMonth monthlyBook : monthlyBooks){
-            isbnBuilder.append(monthlyBook.getISBN() + ", ");
+        isbnBuilder.append("ISBN:");
+
+        for (BookOfTheMonth monthlyBook : monthlyBooks) {
+            isbnBuilder.append(monthlyBook.getISBN()).append(",");
         }
 
-        String isbnString = isbnBuilder.toString().substring(0, isbnBuilder.toString().length() -1);
+        String isbnString = isbnBuilder.toString().substring(0, isbnBuilder.toString().length() - 1);
+
         List<Book> books = bookDao.list(isbnString);
+
         model.addAttribute("books", books);
 
         return "index";

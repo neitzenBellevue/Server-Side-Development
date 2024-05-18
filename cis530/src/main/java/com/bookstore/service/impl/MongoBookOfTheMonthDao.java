@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Repository;
 
 import com.bookstore.model.BookOfTheMonth;
 import com.bookstore.service.dao.BookOfTheMonthDao;
 
+@Repository("bookOfTheMonthDao")
 public class MongoBookOfTheMonthDao implements BookOfTheMonthDao{
 
     @Autowired
@@ -42,6 +44,7 @@ public class MongoBookOfTheMonthDao implements BookOfTheMonthDao{
     @Override
     public List<BookOfTheMonth> list(String key) {
         int month = Integer.parseInt(key);
+
         System.out.println("Month: " + month);
 
         if (month == 999) {
